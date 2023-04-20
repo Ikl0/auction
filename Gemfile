@@ -35,6 +35,7 @@ gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem "omniauth-rails_csrf_protection"
 
 gem "font-awesome-rails"
+gem 'font-awesome-sass'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

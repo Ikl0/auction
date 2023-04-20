@@ -10,10 +10,22 @@ class User < ApplicationRecord
 
     unless user
         user = User.create(
+           name: user_name(data),
+           surname: user_surname(data),
            email: data['email'],
            password: Devise.friendly_token[0,20]
         )
     end
     user
+  end
+
+  private
+
+  def self.user_name(data)
+    data['name'].split.first
+  end
+
+  def self.user_surname(data)
+    data['name'].split[1..-1].join
   end
 end

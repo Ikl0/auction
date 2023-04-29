@@ -1,0 +1,47 @@
+<%= form_with(model: lot) do |form| %>
+  <% if lot.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(lot.errors.count, "error") %> prohibited this lot from being saved:</h2>
+
+      <ul>
+        <% lot.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.label :initial_price, style: "display: block" %>
+    <%= form.text_field :initial_price %>
+  </div>
+
+  <div>
+    <%= form.label :auto_purchase_price, style: "display: block" %>
+    <%= form.text_field :auto_purchase_price %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, style: "display: block" %>
+    <%= form.datetime_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

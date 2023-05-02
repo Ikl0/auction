@@ -1,32 +1,17 @@
-<div id="<%= dom_id lot %>">
-  <p>
-    <strong>Name:</strong>
-    <%= lot.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= lot.description %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= lot.category %>
-  </p>
-
-  <p>
-    <strong>Initial price:</strong>
-    <%= lot.initial_price %>
-  </p>
-
-  <p>
-    <strong>Auto purchase price:</strong>
-    <%= lot.auto_purchase_price %>
-  </p>
-
-  <p>
-    <strong>End time:</strong>
-    <%= lot.end_time %>
-  </p>
-
+<div class="card mb-3" style="max-width: 700px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= image_tag "bmw7.jpeg", class: "card-img-top"%>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= lot.name %></h5>
+        <p class="card-text"><%= lot.description %></p>
+        <p class="card-text">Category: <%= lot.category %></p>
+        <p class="card-text"><small class="text-body-secondary">Initial price: <%= lot.initial_price %></small></p>
+        <p class="card-text"><small class="text-body-secondary">Auto purchase price: <%= lot.auto_purchase_price %></small></p>
+        <p class="card-text"><small class="text-body-secondary">Due to: <%= lot.end_time %></small></p>
+      </div>
+    </div>
+  </div>
 </div>

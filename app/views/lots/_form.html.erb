@@ -11,37 +11,40 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Name" %>
+    <label for="floatingInput">Name</label>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :category, class: "form-control", id: "floatingInput", placeholder: "Category" %>
+    <label for="floatingInput">Category</label>
   </div>
 
-  <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.text_field :category %>
+  <div class="form-floating">
+    <% form.label :description, style: "display: block" %>
+    <%= form.text_area :description, class: "form-control", placeholder: "Description", id: "floatingTextarea", style: "height: 100px" %>
+    <label for="floatingTextarea">Description</label>
   </div>
 
-  <div>
-    <%= form.label :initial_price, style: "display: block" %>
-    <%= form.text_field :initial_price %>
+  <div class="input-group mb-3" style="margin-top: 15px">
+    <span class="input-group-text">$</span>
+    <span class="input-group-text">0.00</span>
+    <%= form.text_field :initial_price, class: "form-control", placeholder: "Initial Price" %>
   </div>
 
-  <div>
-    <%= form.label :auto_purchase_price, style: "display: block" %>
-    <%= form.text_field :auto_purchase_price %>
+  <div class="input-group mb-3">
+    <span class="input-group-text">$</span>
+    <span class="input-group-text">0.00</span>
+    <%= form.text_field :auto_purchase_price, class: "form-control", placeholder: "Auto Purchase Price" %>
   </div>
 
-  <div>
+  <div class="mb-3">
     <%= form.label :end_time, style: "display: block" %>
-    <%= form.datetime_field :end_time %>
+    <%= form.datetime_field :end_time, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-outline-success"%>
   </div>
 <% end %>

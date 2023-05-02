@@ -1,10 +1,16 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @lot %>
 
-<div>
-  <%= link_to "Edit this lot", edit_lot_path(@lot) %> |
-  <%= link_to "Back to lots", lots_path %>
-
-  <%= button_to "Destroy this lot", @lot, method: :delete %>
+<p>
+  <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    Settings
+  </button>
+</p>
+<div style="min-height: 100px;">
+  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+    <div class="card card-body" style="width: max-content;">
+      <%= link_to "Edit", edit_lot_path(@lot), class:'btn btn-outline-secondary btn-sm' %>
+      <%= button_to "Delete", @lot, method: :delete, class:'btn btn-outline-danger btn-sm' %>
+    </div>
+  </div>
 </div>
+

@@ -1,14 +1,25 @@
-<p style="color: green"><%= notice %></p>
+<table class="table">
+  <thead class="table-light">
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Initial Price</th>
+    <th>Auto Purchase Price</th>
+    <th>Due to</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @lots.each do |lot| %>
+      <tr>
+        <td><%= image_tag "bmw7.jpeg", style: 'height:20%;width:auto;'%></td>
+        <td><%= link_to lot.name, lot %></td>
+        <td><%= lot.initial_price %></td>
+        <td><%= lot.auto_purchase_price %></td>
+        <td><%= lot.end_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<h1>Lots</h1>
-
-<div id="lots">
-  <% @lots.each do |lot| %>
-    <%= render lot %>
-    <p>
-      <%= link_to "Show this lot", lot %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New lot", new_lot_path %>
+<%link_to "New lot", new_lot_path %>

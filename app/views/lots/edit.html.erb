@@ -1,10 +1,10 @@
-<h1>Editing lot</h1>
-
-<%= render "form", lot: @lot %>
-
-<br>
-
-<div>
-  <%= link_to "Show this lot", @lot %> |
-  <%= link_to "Back to lots", lots_path %>
+<div class="card w-75">
+  <div class="card-header">
+    <h4>Editing lot</h4>
+  </div>
+  <div class="card-body">
+    <%= render "form", lot: @lot %>
+    <br/>
+    <% link_to "Back to lots", lots_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
 </div>

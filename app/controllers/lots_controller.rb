@@ -1,5 +1,6 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: %i[show edit update destroy]
+  before_action :set_lot, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index]
 
   # GET /lots or /lots.json
   def index
@@ -57,13 +58,13 @@ class LotsController < ApplicationController
 
   private
 
+  # Only allow a list of trusted parameters through.
+  def lot_params
+    params.require(:lot).permit(:name, :description, :category, :initial_price, :auto_purchase_price, :end_time, :user_id)
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_lot
     @lot = Lot.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def lot_params
-    params.require(:lot).permit(:name, :description, :category, :initial_price, :auto_purchase_price, :end_time)
   end
 end

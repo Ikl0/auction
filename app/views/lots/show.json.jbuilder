@@ -1,1 +1,1 @@
-json.partial! "lots/lot", lot: @lot
+json.partial! 'lots/lot', lot: @lot

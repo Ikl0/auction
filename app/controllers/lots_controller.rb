@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: %i[ show edit update destroy ]
+  before_action :set_lot, only: %i[show edit update destroy]
 
   # GET /lots or /lots.json
   def index
@@ -7,8 +7,7 @@ class LotsController < ApplicationController
   end
 
   # GET /lots/1 or /lots/1.json
-  def show
-  end
+  def show; end
 
   # GET /lots/new
   def new
@@ -16,8 +15,7 @@ class LotsController < ApplicationController
   end
 
   # GET /lots/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /lots or /lots.json
   def create
@@ -25,7 +23,7 @@ class LotsController < ApplicationController
 
     respond_to do |format|
       if @lot.save
-        format.html { redirect_to lot_url(@lot), notice: "Lot was successfully created." }
+        format.html { redirect_to lot_url(@lot), notice: 'Lot was successfully created.' }
         format.json { render :show, status: :created, location: @lot }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class LotsController < ApplicationController
   def update
     respond_to do |format|
       if @lot.update(lot_params)
-        format.html { redirect_to lot_url(@lot), notice: "Lot was successfully updated." }
+        format.html { redirect_to lot_url(@lot), notice: 'Lot was successfully updated.' }
         format.json { render :show, status: :ok, location: @lot }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class LotsController < ApplicationController
     @lot.destroy
 
     respond_to do |format|
-      format.html { redirect_to lots_url, notice: "Lot was successfully destroyed." }
+      format.html { redirect_to lots_url, notice: 'Lot was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lot
-      @lot = Lot.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def lot_params
-      params.require(:lot).permit(:name, :description, :category, :initial_price, :auto_purchase_price, :end_time)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lot
+    @lot = Lot.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def lot_params
+    params.require(:lot).permit(:name, :description, :category, :initial_price, :auto_purchase_price, :end_time)
+  end
 end

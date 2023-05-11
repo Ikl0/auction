@@ -11,24 +11,20 @@ class User < ApplicationRecord
     data = access_token.info
     user = User.where(email: data['email']).first
 
-    unless user
-        user = User.create(
-           name: user_name(data),
-           surname: user_surname(data),
-           email: data['email'],
-           password: Devise.friendly_token[0,20]
-        )
-    end
+    user ||= User.create(
+      name: user_name(data),
+      surname: user_surname(data),
+      email: data['email'],
+      password: Devise.friendly_token[0, 20]
+    )
     user
   end
-
-  private
 
   def self.user_name(data)
     data['name'].split.first
   end
 
   def self.user_surname(data)
-    data['name'].split[1..-1].join
+    data['name'].split[1..].join
   end
 end

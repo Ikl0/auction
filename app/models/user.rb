@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def self.user_surname(data)
     data['name'].split[1..].join
   end
+
+  def self.all_users
+    all
+  end
 end

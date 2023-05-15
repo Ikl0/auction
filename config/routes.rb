@@ -4,7 +4,9 @@ require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
-  resources :lots
+  resources :lots do
+    get "/tag/:tag", on: :collection, to: "lots#tag", as: :tag
+  end
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
   root 'main#home'
 end

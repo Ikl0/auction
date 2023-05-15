@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable,
          :validatable, :omniauthable, omniauth_providers: [:github]
 
-  has_many :lots
+  has_many :lots, dependent: :destroy
 
   def self.from_omniauth(access_token)
     data = access_token.info

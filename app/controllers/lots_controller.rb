@@ -56,12 +56,16 @@ class LotsController < ApplicationController
     end
   end
 
+  def tag
+    @lots = Lot.find_by_tags([params[:tag]])
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
   def lot_params
     params.require(:lot).permit(:name, :description, :category,
-                                :initial_price, :auto_purchase_price, :end_time, :user_id)
+                                :initial_price, :auto_purchase_price, :end_time, :user_id, :tags)
   end
 
   # Use callbacks to share common setup or constraints between actions.

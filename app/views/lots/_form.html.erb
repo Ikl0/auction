@@ -48,6 +48,11 @@
     <%= form.number_field :user_id, id: :friend_user_id, class: "form-control", value: current_user.id, type: :hidden %>
   </div>
 
+  <div class="form-floating mb-3">
+    <%= form.text_field :tags, value: @lot.tags.join(", "), class: "form-control", id: "floatingInput", placeholder: "Tags" %>
+    <label for="floatingInput">Tags</label>
+  </div>
+
   <div>
     <%= form.submit class: "btn btn-outline-success"%>
   </div>

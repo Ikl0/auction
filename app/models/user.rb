@@ -28,7 +28,4 @@ class User < ApplicationRecord
     data['name'].split[1..].join
   end
 
-  def self.all_users
-    all
-  end
 end

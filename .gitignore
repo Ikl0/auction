@@ -77,4 +77,4 @@ yarn-debug.log*
 /node_modules
 
 /.idea
-dump.rdb
+*.rdb

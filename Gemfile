@@ -36,6 +36,8 @@ gem "omniauth-rails_csrf_protection"
 
 gem "font-awesome-rails"
 gem 'font-awesome-sass'
+
+gem 'ransack'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

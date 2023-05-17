@@ -5,6 +5,8 @@ class LotsController < ApplicationController
   # GET /lots or /lots.json
   def index
     @lots = Lot.all
+    @q = Lot.ransack(params[:q])
+    @lots = @q.result(distinct: true)
   end
 
   # GET /lots/1 or /lots/1.json

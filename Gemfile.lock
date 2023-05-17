@@ -224,6 +224,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     redis-client (0.14.1)
       connection_pool
     regexp_parser (2.7.0)
@@ -326,6 +330,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
+  ransack
   rubocop-rails (~> 2.19, >= 2.19.1)
   selenium-webdriver
   sidekiq

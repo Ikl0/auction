@@ -12,4 +12,8 @@ class Lot < ApplicationRecord
     array_of_tags = PG::TextEncoder::Array.new.encode(tags)
     where('tags ?| :tags', tags: array_of_tags)
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 end

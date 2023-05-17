@@ -1,3 +1,8 @@
+<%= render 'lots/search_form' %>
+<br/>
+<%if @lots.empty? %>
+  <%= render 'lots/empty_lots' %>
+  <% else %>
 <table class="table">
   <thead class="table-light">
   <tr>
@@ -25,5 +30,5 @@
     <% end %>
   </tbody>
 </table>
-
-<%=link_to "New lot", new_lot_path %>
+<% end %>
+<%link_to "New lot", new_lot_path %>

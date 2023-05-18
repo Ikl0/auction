@@ -18,7 +18,11 @@
   <tbody>
     <% @lots.each do |lot| %>
       <tr>
-        <td><%= image_tag "bmw7.jpeg", style: 'height:20%;width:auto;'%></td>
+        <td>
+        <%if lot.images.attached? %>
+            <%= image_tag lot.images.first, style: 'height:20%;width:auto;'%>
+        <% end %>
+        </td>
         <td><%= link_to lot.name, lot %></td>
         <td><%= lot.initial_price %></td>
         <td><%= lot.auto_purchase_price %></td>

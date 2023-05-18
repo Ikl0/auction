@@ -1,6 +1,6 @@
 class Lot < ApplicationRecord
   belongs_to :user
-
+  has_many_attached :images, dependent: :destroy
   validates :name, :description, presence: true
 
   def tags=(value)
@@ -13,7 +13,7 @@ class Lot < ApplicationRecord
     where('tags ?| :tags', tags: array_of_tags)
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["name"]
+  def self.ransackable_attributes(_auth_object = nil)
+    ['name']
   end
 end

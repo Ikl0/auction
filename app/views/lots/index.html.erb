@@ -1,8 +1,9 @@
-<%= render 'lots/search_form' %>
-<br/>
+
 <%if @lots.empty? %>
   <%= render 'lots/empty_lots' %>
   <% else %>
+  <%= render 'lots/search_form' %>
+  <br/>
 <table class="table">
   <thead class="table-light">
   <tr>
@@ -18,10 +19,16 @@
   <tbody>
     <% @lots.each do |lot| %>
       <tr>
-        <td><%= image_tag "bmw7.jpeg", style: 'height:20%;width:auto;'%></td>
+        <td>
+        <%if lot.images.attached? %>
+            <%= link_to lot_path(lot) do %>
+              <%= image_tag lot.images.first, style: 'height:20%;width:auto;' %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= link_to lot.name, lot %></td>
-        <td><%= lot.initial_price %></td>
-        <td><%= lot.auto_purchase_price %></td>
+        <td><%= lot.initial_price.to_i.to_s + '$' %></td>
+        <td><%= lot.auto_purchase_price.to_i.to_s + '$' %></td>
         <td><% lot.tags.map do |tag| %>
             <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'underline text-blue-600 mr-1.5' %>
           <% end %></td>
@@ -31,4 +38,3 @@
   </tbody>
 </table>
 <% end %>
-<%link_to "New lot", new_lot_path %>

@@ -59,7 +59,7 @@ class LotsController < ApplicationController
   end
 
   def tag
-    @lots = Lot.find_by_tags([params[:tag]])
+    @lots = Lot.find_by(tags: [params[:tag]])
   end
 
   private

@@ -13,6 +13,10 @@ class LotsController < ApplicationController
     @lots = @q.result(distinct: true)
   end
 
+  def best_lots
+    @lots = Lot.order(created_at: :desc, initial_price: :desc).limit(9)
+  end
+
   # GET /lots/1 or /lots/1.json
   def show; end
 

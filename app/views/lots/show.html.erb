@@ -1,5 +1,5 @@
 <%= render @lot %>
-
+<% if @lot.user_id == current_user.id %>
 <p>
   <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
     Settings
@@ -13,4 +13,5 @@
     </div>
   </div>
 </div>
+<% end %>
 

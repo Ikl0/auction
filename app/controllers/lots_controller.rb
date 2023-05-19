@@ -18,7 +18,12 @@ class LotsController < ApplicationController
   end
 
   # GET /lots/1/edit
-  def edit; end
+  def edit
+    return if @lot.owned_by?(current_user)
+
+    flash[:alert] = 'You are not authorized to edit this lot.'
+    redirect_to lots_path
+  end
 
   # POST /lots or /lots.json
   def create
@@ -37,24 +42,36 @@ class LotsController < ApplicationController
 
   # PATCH/PUT /lots/1 or /lots/1.json
   def update
-    respond_to do |format|
-      if @lot.update(lot_params)
-        format.html { redirect_to lot_url(@lot), notice: 'Lot was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lot }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @lot.errors, status: :unprocessable_entity }
+    if @lot.owned_by?(current_user)
+      respond_to do |format|
+        if @lot.update(lot_params)
+          format.html { redirect_to lot_url(@lot), notice: 'Lot was successfully updated.' }
+          format.json { render :show, status: :ok, location: @lot }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @lot.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error] = 'You are not authorized to update this lot.'
+      redirect_to lots_path
+      nil
     end
   end
 
   # DELETE /lots/1 or /lots/1.json
   def destroy
-    @lot.destroy
+    if @lot.owned_by?(current_user)
+      @lot.destroy
 
-    respond_to do |format|
-      format.html { redirect_to lots_url, notice: 'Lot was successfully destroyed.' }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to lots_url, notice: 'Lot was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:alert] = 'You are not authorized to update this lot.'
+      redirect_to lots_path
+      nil
     end
   end
 

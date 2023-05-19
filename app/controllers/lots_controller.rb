@@ -4,8 +4,12 @@ class LotsController < ApplicationController
 
   # GET /lots or /lots.json
   def index
-    @lots = Lot.all
     @q = Lot.ransack(params[:q])
+    @lots = @q.result(distinct: true)
+  end
+
+  def my_lots
+    @q = current_user.lots.ransack(params[:q])
     @lots = @q.result(distinct: true)
   end
 

@@ -8,7 +8,7 @@ class Lot < ApplicationRecord
     super(value)
   end
 
-  def self.find_by_tags(tags)
+  def self.find_by(tags:)
     array_of_tags = PG::TextEncoder::Array.new.encode(tags)
     where('tags ?| :tags', tags: array_of_tags)
   end

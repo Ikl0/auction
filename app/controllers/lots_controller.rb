@@ -59,7 +59,6 @@ class LotsController < ApplicationController
     else
       flash[:error] = 'You are not authorized to update this lot.'
       redirect_to lots_path
-      nil
     end
   end
 
@@ -75,7 +74,6 @@ class LotsController < ApplicationController
     else
       flash[:alert] = 'You are not authorized to update this lot.'
       redirect_to lots_path
-      nil
     end
   end
 

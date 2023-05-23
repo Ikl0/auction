@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :validatable, :omniauthable, omniauth_providers: [:github]
 
   has_many :lots, dependent: :destroy
+  has_many :bids, dependent: :destroy
 
   def self.from_omniauth(access_token)
     data = access_token.info

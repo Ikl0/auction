@@ -18,7 +18,11 @@ class LotsController < ApplicationController
   end
 
   # GET /lots/1 or /lots/1.json
-  def show; end
+  def show
+    @lot = Lot.find(params[:id])
+    @bid = @lot.bids
+    @leading_bid = @lot.bids.order(amount: :desc).first
+  end
 
   # GET /lots/new
   def new
@@ -51,6 +55,7 @@ class LotsController < ApplicationController
   # PATCH/PUT /lots/1 or /lots/1.json
   def update
     if @lot.owned_by?(current_user)
+      @lot.bids.destroy_all
       respond_to do |format|
         if @lot.update(lot_params)
           format.html { redirect_to lot_url(@lot), notice: 'Lot was successfully updated.' }
@@ -61,7 +66,7 @@ class LotsController < ApplicationController
         end
       end
     else
-      flash[:error] = 'You are not authorized to update this lot.'
+      flash[:alert] = 'You are not authorized to update this lot.'
       redirect_to lots_path
     end
   end

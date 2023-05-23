@@ -20,6 +20,24 @@
           <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'underline text-blue-600 mr-1.5' %>
           <% end %>
         </small></p>
+
+        <% if @leading_bid && @leading_bid.user == current_user %>
+          <p>Your bid <%= @leading_bid.amount %> is leading now.</p>
+        <% else %>
+          <% if @leading_bid %>
+          <p>The leading bid is <%= @leading_bid.amount %> by <%= @leading_bid.user.name %>.</p>
+            <% else %>
+            <p>There are no any bids for this lot, be the first!</p>
+            <% end %>
+            <%= form_with(model: @bid, url: lot_bids_path(@lot), method: :post) do |form| %>
+              <%= form.label :amount %>
+
+              <%= form.number_field :amount , min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price) %>
+
+              <%= form.submit 'Place Bid' %>
+            <% end %>
+        <% end %>
+
       </div>
     </div>
   </div>

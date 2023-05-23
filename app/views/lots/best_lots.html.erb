@@ -15,136 +15,23 @@
 
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
-
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% @lots.each do |lot| %>
         <div class="col">
           <div class="card shadow-sm">
-            <%= image_tag @lots[0].images.first, style: "width:100%;height:225"%>
+            <%= image_tag lot.images.first, style: "width:100%;height:225"%>
             <div class="card-body">
-              <p class="card-text"><%= @lots[0].name %></p>
+              <p class="card-text"><%= lot.name %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[0]), class:"btn btn-sm btn-outline-secondary" %>
+                  <%= link_to 'View', lot_path(lot), class:"btn btn-sm btn-outline-secondary" %>
                 </div>
-                <small class="text-body-secondary">Due to: <%= @lots[0].end_time %></small>
+                <small class="text-body-secondary">Due to: <%= lot.end_time %></small>
               </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[1].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[1].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[1]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[1].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[2].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[2].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[2]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[2].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[3].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[3].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[3]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[3].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[4].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[4].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[4]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[4].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[5].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[5].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[5]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[5].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[6].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[6].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[6]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[6].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[7].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[7].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[7]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[7].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag @lots[8].images.first, style: "width:100%;height:225"%>
-            <div class="card-body">
-              <p class="card-text"><%= @lots[8].name %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', lot_path(@lots[8]), class:"btn btn-sm btn-outline-secondary" %>
-                </div>
-                <small class="text-body-secondary">Due to: <%= @lots[8].end_time %></small>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

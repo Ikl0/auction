@@ -1,5 +1,6 @@
 class Lot < ApplicationRecord
   belongs_to :user
+  has_many :bids
   has_many_attached :images, dependent: :destroy
   validates :name, :description, presence: true
 

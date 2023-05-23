@@ -1,0 +1,39 @@
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Auction</h1>
+        <p class="lead text-body-secondary">Welcome to the car auction!
+          We are glad to welcome you to our online car auction. Here you will find a wide selection of cars of different brands, models and years of manufacture. We offer the opportunity to participate in exciting auctions and purchase the car of your dreams.</p>
+        <p>
+          <a href="<%= lots_path %>" class="btn btn-primary my-2">Check available lots</a>
+          <a href="<%= new_lot_path %>" class="btn btn-secondary my-2">Create a new lot</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% @lots.each do |lot| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <%= image_tag lot.images.first, style: "width:100%;height:225"%>
+            <div class="card-body">
+              <p class="card-text"><%= lot.name %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <%= link_to 'View', lot_path(lot), class:"btn btn-sm btn-outline-secondary" %>
+                </div>
+                <small class="text-body-secondary">Due to: <%= lot.end_time %></small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
+<%= render 'layouts/footer' %>

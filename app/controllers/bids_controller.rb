@@ -7,7 +7,7 @@ class BidsController < ApplicationController
     if @bid.save
       redirect_to lot_path(@lot), notice: 'Your bid has been placed.'
     else
-      redirect_to lot_path(@lot), alert: 'Bid should be more than initial price.'
+      redirect_to lot_path(@lot), alert: @bids..errors.full_messages.to_sentence
     end
   end
 

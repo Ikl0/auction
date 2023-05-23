@@ -29,7 +29,6 @@
             <% else %>
             <p>There are no any bids for this lot, be the first!</p>
             <% end %>
-          <% if current_user.present? %>
             <%= form_with(model: @bid, url: lot_bids_path(@lot), method: :post) do |form| %>
               <%= form.label :amount %>
 
@@ -37,9 +36,6 @@
 
               <%= form.submit 'Place Bid' %>
             <% end %>
-          <% else %>
-            <p>Please sign in to place a bid.</p>
-          <% end %>
         <% end %>
 
       </div>

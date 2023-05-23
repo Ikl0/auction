@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :lots do
     get "/tag/:tag", on: :collection, to: "lots#tag", as: :tag
-    resources :bids, only: [:create, :destroy]
+    resources :bids, only: [:create]
   end
 
   get 'my_lots', to: 'lots#my_lots'

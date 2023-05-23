@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :lots do
     get "/tag/:tag", on: :collection, to: "lots#tag", as: :tag
+    resources :bids, only: [:create, :destroy]
   end
+
   get 'my_lots', to: 'lots#my_lots'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
   root 'main#home'

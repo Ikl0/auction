@@ -1,6 +1,6 @@
 class LotsController < ApplicationController
   before_action :set_lot, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :best_lots]
 
   # GET /lots or /lots.json
   def index

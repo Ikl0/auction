@@ -18,10 +18,10 @@
   <tbody>
     <% @lots.each do |lot| %>
       <tr>
-        <td>
+        <td class="w-25">
         <%if lot.images.attached? %>
             <%= link_to lot_path(lot) do %>
-              <%= image_tag lot.images.first, style: 'height:20%;width:auto;' %>
+              <%= image_tag lot.images.first, class: 'img-fluid img-thumbnail' %>
             <% end %>
           <% end %>
         </td>
@@ -29,7 +29,7 @@
         <td><%= lot.initial_price.to_i.to_s + '$' %></td>
         <td><%= lot.auto_purchase_price.to_i.to_s + '$' %></td>
         <td><% lot.tags.map do |tag| %>
-            <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'underline text-blue-600 mr-1.5' %>
+            <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'badge rounded-pill bg-light text-dark', style: 'text-decoration:none' %>
           <% end %></td>
         <td><%= lot.end_time %></td>
       </tr>

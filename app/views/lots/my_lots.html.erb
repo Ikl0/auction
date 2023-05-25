@@ -27,7 +27,7 @@
         <td><%= lot.initial_price.to_i.to_s + '$' %></td>
         <td><%= lot.auto_purchase_price.to_i.to_s + '$' %></td>
         <td><% lot.tags.map do |tag| %>
-            <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'badge rounded-pill bg-light text-dark', style: 'text-decoration:none' %>
+            <%= link_to "##{tag}", tag_lots_path(tag:), class: 'badge rounded-pill bg-light text-dark', style: 'text-decoration:none' %>
           <% end %></td>
         <% if lot.winner %>
           <td><span class="badge text-bg-danger">Sold!</span>

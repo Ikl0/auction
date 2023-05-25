@@ -46,12 +46,12 @@
             <p class="card-text">
               <%= form_with(model: @bid, url: lot_bids_path(@lot), method: :post) do |form| %>
                 <%= form.label :bid %>
-                <%= form.number_field :amount , min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price), max: lot.auto_purchase_price %>
+                <%= form.number_field :amount, min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price), max: lot.auto_purchase_price %>
                 <%= form.submit 'Place Bid' %>
               <% end %>
             </p>
+          <% end %>
         <% end %>
-      <%end %>
       </div>
     </div>
   </div>

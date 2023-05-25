@@ -5,7 +5,9 @@
         <% lot.images.each do |image| %>
            <%= image_tag image, class: "card-img-top"%>
         <% end %>
-      <% end %>
+      <% else %>
+        <%= image_tag "placeholder.jpeg", class: "card-img-top" %>
+      <%end %>
     </div>
     <div class="col-md-8">
       <div class="card-body">

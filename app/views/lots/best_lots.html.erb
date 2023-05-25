@@ -19,7 +19,7 @@
         <% @lots.each do |lot| %>
         <div class="col">
           <div class="card shadow-sm">
-            <%= image_tag lot.images.first, style: "width:100%;height:225"%>
+            <%= lot.images.present? ? image_tag(lot.images.first, style: "width:100%;height:225") :  image_tag("placeholder.jpeg", class: "img-fluid img-thumbnail")%>
             <div class="card-body">
               <p class="card-text"><%= lot.name %></p>
               <div class="d-flex justify-content-between align-items-center">

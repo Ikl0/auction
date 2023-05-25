@@ -14,8 +14,8 @@
   <% @lots.each do |lot| %>
     <tr>
       <td class="w-25">
-        <%if lot.images.attached? %>
-          <%= image_tag lot.images.first, class: 'img-fluid img-thumbnail'%>
+        <%= link_to lot_path(lot) do %>
+          <%= lot.images.present? ? image_tag(lot.images.first, class: "img-fluid img-thumbnail") : image_tag("placeholder.jpeg", class: "img-fluid img-thumbnail") %>
         <% end %>
       </td>
       <td><%= link_to lot.name, lot, style: "text-decoration: none;" %></td>

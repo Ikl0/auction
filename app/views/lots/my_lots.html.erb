@@ -31,7 +31,12 @@
         <td><% lot.tags.map do |tag| %>
             <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'underline text-blue-600 mr-1.5' %>
           <% end %></td>
+        <% if lot.winner %>
+          <td><span class="badge rounded-pill text-bg-danger">Sold!</span>
+          </td>
+          <%else %>
         <td><%= lot.end_time %></td>
+        <% end %>
       </tr>
     <% end %>
     </tbody>

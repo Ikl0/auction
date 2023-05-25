@@ -1,5 +1,6 @@
 class Lot < ApplicationRecord
   belongs_to :user
+  belongs_to :winner, class_name: 'User', optional: true
   has_many :bids, dependent: :destroy
   has_many_attached :images, dependent: :destroy
   validates :name, :description, presence: true

@@ -5,9 +5,14 @@ class BidsController < ApplicationController
     @bid.user = current_user
 
     if @bid.save
-      redirect_to lot_path(@lot), notice: 'Your bid has been placed.'
+      if @bid.amount >= @lot.auto_purchase_price
+        @lot.update(winner: current_user)
+        redirect_to won_lots_path, notice: "Congratulations, you have won #{@lot.name}!"
+      else
+        redirect_to lot_path(@lot), notice: 'Your bid has been placed.'
+      end
     else
-      redirect_to lot_path(@lot), alert: @bids..errors.full_messages.to_sentence
+      redirect_to lot_path(@lot), alert: @bid.errors.full_messages.to_sentence
     end
   end
 

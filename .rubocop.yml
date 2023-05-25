@@ -1,4 +1,7 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-erb
+
 AllCops:
   NewCops: enable
   Exclude:
@@ -15,4 +18,3 @@ Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
-

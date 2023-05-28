@@ -30,13 +30,13 @@
   <div class="input-group mb-3" style="margin-top: 15px">
     <span class="input-group-text">$</span>
     <span class="input-group-text">0.00</span>
-    <%= form.number_field :initial_price, class: "form-control", placeholder: "Initial Price", id: 'input1' %>
+    <%= form.number_field :initial_price, class: "form-control", placeholder: "Initial Price", min: 1, id: 'input1' %>
   </div>
 
   <div class="input-group mb-3">
     <span class="input-group-text">$</span>
     <span class="input-group-text">0.00</span>
-    <%= form.number_field :auto_purchase_price, class: "form-control", placeholder: "Auto Purchase Price", id: 'input2' %>
+    <%= form.number_field :auto_purchase_price, class: "form-control", placeholder: "Auto Purchase Price", min: 1, id: 'input2' %>
   </div>
 
   <div class="mb-3">
@@ -55,11 +55,11 @@
 
   <div class="mb-3">
     <%= form.label :images, style: "display: block" %>
-    <%= form.file_field :images, class: "form-control", multiple: true %>
+    <%= form.file_field :images, class: 'form-control', multiple: true %>
   </div>
 
   <div>
-    <%= form.submit class: "btn btn-outline-success"%>
+    <%= form.submit class: 'btn btn-outline-success'%>
   </div>
 <% end %>
 
@@ -67,7 +67,7 @@
     $(document).ready(function() {
         $('#input1').on('input', function() {
             var minValue = parseFloat($(this).val()) || 0;
-            $('#input2').attr('min', minValue);
+            $('#input2').val(minValue).attr('min', minValue);
         });
     });
 </script>

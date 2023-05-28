@@ -5,7 +5,9 @@
         <% lot.images.each do |image| %>
            <%= image_tag image, class: "card-img-top"%>
         <% end %>
-      <% end %>
+      <% else %>
+        <%= image_tag "placeholder.jpeg", class: "card-img-top" %>
+      <%end %>
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -20,24 +22,36 @@
           <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'underline text-blue-600 mr-1.5' %>
           <% end %>
         </small></p>
-
-        <% if @leading_bid && @leading_bid.user == current_user %>
-          <p>Your bid <%= @leading_bid.amount %> is leading now.</p>
+        <% if @lot.winner && @lot.winner == current_user %>
+          <span class="badge bg-success">You have won this lot with <%=@leading_bid.amount %>$ bid</span>
+        <%elsif @lot.winner && @lot.winner != current_user && @lot.user_id != current_user.id%>
+          <span class="badge bg-danger">This lot has been sold, the winner is: <%=@lot.winner.name + ' ' + @lot.winner.surname %></span>
         <% else %>
-          <% if @leading_bid %>
-          <p>The leading bid is <%= @leading_bid.amount %> by <%= @leading_bid.user.name %>.</p>
+          <% if @lot.user_id == current_user.id %>
+            <% if @lot.winner %>
+            <span class="badge bg-success">The winner is <%= @leading_bid.user.surname + ' ' + @leading_bid.user.name %> with <%= @leading_bid.amount %>$ bid</span>
+            <% elsif @leading_bid %>
+            <span class="badge bg-primary">The leading bid is <%= @leading_bid.amount %>$ by <%= @leading_bid.user.name + ' ' + @leading_bid.user.surname %></span>
             <% else %>
-            <p>There are no any bids for this lot, be the first!</p>
+            <span class="badge bg-info text-dark">Your lot has no bids yet</span>
             <% end %>
-            <%= form_with(model: @bid, url: lot_bids_path(@lot), method: :post) do |form| %>
-              <%= form.label :amount %>
-
-              <%= form.number_field :amount , min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price) %>
-
-              <%= form.submit 'Place Bid' %>
+          <% elsif @leading_bid && @leading_bid.user == current_user %>
+            <span class="badge bg-success">Your bid <%= @leading_bid.amount %>$ is leading now</span>
+          <% else %>
+            <% if @leading_bid.nil? %>
+            <span class="badge bg-warning text-dark">There are no bids for this lot yet! Be the first:</span>
+            <% else %>
+            <span class="badge bg-warning text-dark">The leading bid is <%= @leading_bid.amount %>$ by <%= @leading_bid.user.name + ' ' + @leading_bid.user.surname %></span>
             <% end %>
+            <p class="card-text">
+              <%= form_with(model: @bid, url: lot_bids_path(@lot), method: :post) do |form| %>
+                <%= form.label :bid %>
+                <%= form.number_field :amount, min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price), max: lot.auto_purchase_price %>
+                <%= form.submit 'Place Bid' %>
+              <% end %>
+            </p>
+          <% end %>
         <% end %>
-
       </div>
     </div>
   </div>

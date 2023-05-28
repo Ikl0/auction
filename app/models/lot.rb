@@ -1,7 +1,9 @@
 class Lot < ApplicationRecord
   belongs_to :user
-  has_many :bids
+  belongs_to :winner, class_name: 'User', optional: true
+  has_many :bids, dependent: :destroy
   has_many_attached :images, dependent: :destroy
+  scope :without_winner, -> { where(winner: nil) }
   validates :name, :description, presence: true
 
   def tags=(value)

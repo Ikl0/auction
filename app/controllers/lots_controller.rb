@@ -5,7 +5,7 @@ class LotsController < ApplicationController
   # GET /lots or /lots.json
   def index
     @q = Lot.ransack(params[:q])
-    @lots = @q.result(distinct: true).where(winner: nil)
+    @lots = @q.result(distinct: true).without_winner
   end
 
   def my_lots
@@ -19,7 +19,7 @@ class LotsController < ApplicationController
   end
 
   def best_lots
-    @lots = Lot.order(created_at: :desc, initial_price: :desc).where(winner: nil).limit(9)
+    @lots = Lot.without_winner.order(created_at: :desc, initial_price: :desc).limit(9)
   end
 
   # GET /lots/1 or /lots/1.json

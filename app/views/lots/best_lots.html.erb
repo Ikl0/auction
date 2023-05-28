@@ -2,12 +2,11 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Auction</h1>
-        <p class="lead text-body-secondary">Welcome to the car auction!
-          We are glad to welcome you to our online car auction. Here you will find a wide selection of cars of different brands, models and years of manufacture. We offer the opportunity to participate in exciting auctions and purchase the car of your dreams.</p>
+        <h1 class="fw-light"><%= t(:auction) %></h1>
+        <p class="lead text-body-secondary"><%= t(:welcome) %></p>
         <p>
-          <a href="<%= lots_path %>" class="btn btn-primary my-2">Check available lots</a>
-          <a href="<%= new_lot_path %>" class="btn btn-secondary my-2">Create a new lot</a>
+          <a href="<%= lots_path %>" class="btn btn-primary my-2"><%= t(:all_lot_btn) %></a>
+          <a href="<%= new_lot_path %>" class="btn btn-secondary my-2"><%= t(:new_lot_btn) %></a>
         </p>
       </div>
     </div>
@@ -19,14 +18,14 @@
         <% @lots.each do |lot| %>
         <div class="col">
           <div class="card shadow-sm">
-            <%= lot.images.present? ? image_tag(lot.images.first, class: 'bd-placeholder-img card-img-top', style: "width:100%;height:225") :  image_tag("placeholder.jpeg", class: "img-fluid img-thumbnail")%>
+            <%= lot.images.present? ? image_tag(lot.images.first, class: 'bd-placeholder-img card-img-top', style: "width:100%;height:225") :  image_tag("placeholder.jpeg", class: 'bd-placeholder-img card-img-top', style: "width:100%;height:225;object-fit:cover;")%>
             <div class="card-body">
               <p class="card-text"><%= lot.name %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <%= link_to 'View', lot_path(lot), class: 'btn btn-sm btn-outline-secondary' %>
+                  <%= link_to t('view'), lot_path(lot), class: 'btn btn-sm btn-outline-secondary' %>
                 </div>
-                <span class="badge bg-success">Due to: <%= lot.end_time %></span>
+                <span class="badge bg-success"><%= t(:due_to) %> <%= lot.end_time %></span>
               </div>
             </div>
           </div>

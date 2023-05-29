@@ -358,6 +358,7 @@ DEPENDENCIES
   devise
   font-awesome-rails
   font-awesome-sass
+  i18n
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails

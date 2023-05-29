@@ -30,4 +30,17 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  auction: "Action"
+  welcome: "We are glad to welcome you to our online car auction. Here you will find a wide selection of cars of different brands, models and years of manufacture. We offer the opportunity to participate in exciting auctions and purchase the car of your dreams."
+  all_lot_btn: "Check available lots"
+  new_lot_btn: "Create a new lot"
+  lots_link: "Lots"
+  my_lots_link: "My Lots"
+  won_lots_link: "Won Lots"
+  add_lot_link: "Add Lot"
+  edit_account: "Edit Account"
+  sigh_out: "Sign Out"
+  view: "View"
+  due_to: "Due to:"
+  switch_to_english: "En"
+  switch_to_rus: "Ru"

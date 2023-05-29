@@ -33,7 +33,7 @@
           <td><span class="badge text-bg-danger">Sold!</span>
           </td>
           <%else %>
-        <td><%= lot.end_time %></td>
+          <td><%= lot.end_time.strftime('%Y/%m/%d %H:%M') %></td>
         <% end %>
       </tr>
     <% end %>

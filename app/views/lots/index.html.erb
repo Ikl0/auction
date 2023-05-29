@@ -25,11 +25,11 @@
         </td>
         <td><%= link_to lot.name, lot, style: "text-decoration: none;" %></td>
         <td><%= lot.initial_price.to_i.to_s + '$' %></td>
-        <td><%= lot.auto_purchase_price.to_i.to_s + '$' %></td>
+        <td><%= "#{lot.auto_purchase_price.to_i.to_s}$" %></td>
         <td><% lot.tags.map do |tag| %>
             <%= link_to "##{tag}", tag_lots_path(tag:), class: 'badge rounded-pill bg-light text-dark', style: 'text-decoration:none' %>
           <% end %></td>
-        <td><%= lot.end_time %></td>
+        <td><%= lot.end_time.strftime('%Y/%m/%d %H:%M') %></td>
       </tr>
     <% end %>
   </tbody>

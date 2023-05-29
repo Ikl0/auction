@@ -41,7 +41,7 @@
             <% if @leading_bid.nil? %>
             <span class="badge bg-warning text-dark">There are no bids for this lot yet! Be the first:</span>
             <% else %>
-            <span class="badge bg-warning text-dark">The leading bid is <%= @leading_bid.amount %>$ by <%= @leading_bid.user.name + ' ' + @leading_bid.user.surname %></span>
+            <span class="badge bg-warning text-dark">The leading bid is <%= @leading_bid.amount %>$ by <%= "#{@leading_bid.user.name} #{@leading_bid.user.surname}" %></span>
             <% end %>
             <p class="card-text">
               <%= form_with(model: @bid, url: lot_bids_path(@lot), method: :post) do |form| %>

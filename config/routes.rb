@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get '/best_lots', to: 'lots#best_lots', as: 'best_lots'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
   root 'lots#best_lots'
+  get 'switch_language/:locale', to: 'language#switch', as: 'switch_language'
 end

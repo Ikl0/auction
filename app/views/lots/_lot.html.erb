@@ -24,7 +24,8 @@
         </small></p>
         <% if @lot.winner && @lot.winner == current_user %>
           <span class="badge bg-success">You have won this lot with <%=@leading_bid.amount %>$ bid</span>
-        <%elsif @lot.winner && @lot.winner != current_user && @lot.user_id != current_user.id%>
+          <p class="card-text"><small class="text-body-secondary">Lot owner: <%= lot.user.name  + ' ' + lot.user.surname%> </small></p>
+      <%elsif @lot.winner && @lot.winner != current_user && @lot.user_id != current_user.id%>
           <span class="badge bg-danger">This lot has been sold, the winner is: <%=@lot.winner.name + ' ' + @lot.winner.surname %></span>
         <% else %>
           <% if @lot.user_id == current_user.id %>

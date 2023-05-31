@@ -5,28 +5,28 @@
   </div>
   <div class="card-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render 'devise/shared/error_messages', resource: %>
 
       <div class="form-group">
         <%= f.file_field :avatar, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.text_field :name, class: "form-control", placeholder:"Name", autofocus: true %>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Name', autofocus: true %>
       </div>
 
       <div class="form-group">
-        <%= f.text_field :surname, class: "form-control", placeholder:"Surname", autofocus: true %>
+        <%= f.text_field :surname, class: 'form-control', placeholder: 'Surname', autofocus: true %>
       </div>
 
       <div class="form-group">
-        <%= f.email_field :email, class: "form-control", placeholder:"mail@example.com", autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'mail@example.com', autofocus: true, autocomplete: 'email' %>
       </div>
 
       <div class="form-group">
         <% if @minimum_password_length %>
         <% end %>
-        <%= f.password_field :password, class: "form-control", placeholder:"Password ", autocomplete: "new-password" %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Password ', autocomplete: 'new-password' %>
       </div>
 
       <div class="form-group">

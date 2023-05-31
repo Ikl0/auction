@@ -3,10 +3,10 @@
     <div class="col-md-4">
       <%if lot.images.attached? %>
         <% lot.images.each do |image| %>
-           <%= image_tag image, class: "card-img-top"%>
+           <%= image_tag image, class: 'card-img-top'%>
         <% end %>
       <% else %>
-        <%= image_tag "placeholder.jpeg", class: "card-img-top" %>
+        <%= image_tag 'placeholder.jpeg', class: 'card-img-top' %>
       <%end %>
     </div>
     <div class="col-md-8">
@@ -14,25 +14,25 @@
         <h5 class="card-title"><%= lot.name %></h5>
         <p class="card-text"><%= lot.description %></p>
         <p class="card-text">Category: <%= lot.category %></p>
-        <p class="card-text"><small class="text-body-secondary">Initial price: <%= lot.initial_price.to_i.to_s + '$' %></small></p>
-        <p class="card-text"><small class="text-body-secondary">Auto purchase price: <%= lot.auto_purchase_price.to_i.to_s + '$' %></small></p>
+        <p class="card-text"><small class="text-body-secondary">Initial price: <%= "#{lot.initial_price.to_i}$" %></small></p>
+        <p class="card-text"><small class="text-body-secondary">Auto purchase price: <%= "#{lot.auto_purchase_price.to_i}$" %></small></p>
         <p class="card-text"><small class="text-body-secondary">Due to: <%= lot.end_time %></small></p>
         <p class="card-text"><small class="text-body-secondary">Tagged:
           <% lot.tags.map do |tag| %>
-          <%= link_to '#' + tag, tag_lots_path(tag: tag), class: 'underline text-blue-600 mr-1.5' %>
+          <%= link_to "##{tag}", tag_lots_path(tag:), class: 'underline text-blue-600 mr-1.5' %>
           <% end %>
         </small></p>
         <% if @lot.winner && @lot.winner == current_user %>
           <span class="badge bg-success">You have won this lot with <%=@leading_bid.amount %>$ bid</span>
-          <p class="card-text"><small class="text-body-secondary">Lot owner: <%= lot.user.name  + ' ' + lot.user.surname%> </small></p>
+          <p class="card-text"><small class="text-body-secondary">Lot owner: <%= "#{lot.user.name} #{lot.user.surname}"%> </small></p>
       <%elsif @lot.winner && @lot.winner != current_user && @lot.user_id != current_user.id%>
-          <span class="badge bg-danger">This lot has been sold, the winner is: <%=@lot.winner.name + ' ' + @lot.winner.surname %></span>
+          <span class="badge bg-danger">This lot has been sold, the winner is: <%="#{@lot.winner.name} #{@lot.winner.surname}" %></span>
         <% else %>
           <% if @lot.user_id == current_user.id %>
             <% if @lot.winner %>
-            <span class="badge bg-success">The winner is <%= @leading_bid.user.surname + ' ' + @leading_bid.user.name %> with <%= @leading_bid.amount %>$ bid</span>
+            <span class="badge bg-success">The winner is <%= "#{@leading_bid.user.surname} #{@leading_bid.user.name}" %> with <%= @leading_bid.amount %>$ bid</span>
             <% elsif @leading_bid %>
-            <span class="badge bg-primary">The leading bid is <%= @leading_bid.amount %>$ by <%= @leading_bid.user.name + ' ' + @leading_bid.user.surname %></span>
+            <span class="badge bg-primary">The leading bid is <%= @leading_bid.amount %>$ by <%= "#{@leading_bid.user.name} #{@leading_bid.user.surname}" %></span>
             <% else %>
             <span class="badge bg-info text-dark">Your lot has no bids yet</span>
             <% end %>

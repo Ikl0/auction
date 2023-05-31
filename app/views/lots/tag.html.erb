@@ -15,15 +15,15 @@
     <tr>
       <td class="w-25">
         <%= link_to lot_path(lot) do %>
-          <%= lot.images.present? ? image_tag(lot.images.first, class: "img-fluid img-thumbnail") : image_tag("placeholder.jpeg", class: "img-fluid img-thumbnail") %>
+          <%= lot.images.present? ? image_tag(lot.images.first, class: 'img-fluid img-thumbnail') : image_tag('placeholder.jpeg', class: 'img-fluid img-thumbnail') %>
         <% end %>
       </td>
-      <td><%= link_to lot.name, lot, style: "text-decoration: none;" %></td>
-      <td><%= lot.initial_price.to_i.to_s + '$' %></td>
-      <td><%= "#{lot.auto_purchase_price.to_i.to_s}$" %></td>
+      <td><%= link_to lot.name, lot, style: 'text-decoration: none;' %></td>
+      <td><%= "#{lot.initial_price.to_i}$" %></td>
+      <td><%= "#{lot.auto_purchase_price.to_i}$" %></td>
       <td><% lot.tags.map do |tag| %>
           <%= link_to "##{tag}", tag_lots_path(tag:), class: 'badge rounded-pill bg-light text-dark', style: 'text-decoration:none' %>
-        <% end.join(', ') %></td>
+        <% end %></td>
       <td><%= lot.end_time.strftime('%Y/%m/%d %H:%M') %></td>    </tr>
   <% end %>
   </tbody>

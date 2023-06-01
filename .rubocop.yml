@@ -1,0 +1,20 @@
+require:
+  - rubocop-rails
+  - rubocop-erb
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{**,*}'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'config.ru'
+
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false

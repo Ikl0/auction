@@ -1,0 +1,6 @@
+daily_email:
+  cron: '0 9 * * * Europe/Minsk'
+  class: 'DailyNewsWorker'
+lot_check_worker:
+  cron: '*/1 * * * *'
+  class: 'LotCheckWorker'

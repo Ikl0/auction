@@ -1,0 +1,37 @@
+<%if @lots.empty? %>
+  <%= render 'lots/empty_lots' %>
+  <% else %>
+  <%= render 'lots/search_form' %>
+  <br/>
+<table class="table">
+  <thead class="table-light">
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Initial Price</th>
+    <th>Auto Purchase Price</th>
+    <th>Tags</th>
+    <th>Due to</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @lots.each do |lot| %>
+      <tr>
+        <td class="w-25">
+            <%= link_to lot_path(lot) do %>
+              <%= lot.images.present? ? image_tag(lot.images.first, class: 'img-fluid img-thumbnail') : image_tag('placeholder.jpeg', class: 'img-fluid img-thumbnail') %>
+          <% end %>
+        </td>
+        <td><%= link_to lot.name, lot, style: 'text-decoration: none;' %></td>
+        <td><%= "#{lot.initial_price.to_i}$" %></td>
+        <td><%= "#{lot.auto_purchase_price.to_i}$" %></td>
+        <td><% lot.tags.map do |tag| %>
+            <%= link_to "##{tag}", tag_lots_path(tag:), class: 'badge rounded-pill bg-light text-dark', style: 'text-decoration:none' %>
+          <% end %></td>
+        <td><%= lot.end_time.strftime('%Y/%m/%d %H:%M') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

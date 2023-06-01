@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><%= t(:auction) %></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"> <%= link_to t('lots_link'), lots_path, class: 'nav-link' %></li>
+        <% if current_user %>
+        <li class="nav-item"> <%= link_to t('my_lots_link'), my_lots_path, class: 'nav-link' %></li>
+        <li class="nav-item"> <%= link_to t('won_lots_link'), won_lots_path, class: 'nav-link' %></li>
+        <li class="nav-item"> <%= link_to t('add_lot_link'), new_lot_path, class: 'nav-link' %></li>
+        <% end %>
+      </ul>
+      <ul class="navbar-nav">
+        <% if current_user %>
+          <% if current_user.avatar.attached? %>
+            <li class="nav-item">
+              <%= link_to edit_user_registration_path do %>
+                <%= image_tag current_user.avatar, style: 'display:inline-block; width:38px; height:38px; border-radius:40%; margin-right:8px' %>
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav-item"> <%= link_to t('edit_account'), edit_user_registration_path, class: 'nav-link' %></li>
+          <% end %>
+          <% if current_user.admin? %>
+            <li class="nav-item"> <%= link_to t('admin_panel'), rails_admin_path, class: 'btn btn-small btn-primary mx-2' %></li>
+          <% end %>
+          <li class="nav-item"> <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-small btn-primary mx-2' %></li>
+        <% else %>
+          <li class="nav-item"> <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'  %></li>
+          <li class="nav-item"> <%= link_to 'Sign In', new_user_session_path, class: 'nav-link'  %></li>
+        <% end %>
+        <% if session[:locale] == 'ru' %>
+          <li class="nav-item"> <%= link_to t('switch_to_english'), switch_language_path(locale: 'en.yml'), class: 'btn btn-small btn-secondary mx-2'%></li>
+        <% else %>
+          <li class="nav-item"> <%= link_to t('switch_to_rus'), switch_language_path(locale: 'ru.yml'), class: 'btn btn-small btn-secondary mx-2'%></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

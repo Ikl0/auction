@@ -1,0 +1,73 @@
+<%= form_with(model: lot) do |form| %>
+  <% if lot.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(lot.errors.count, 'error') %> prohibited this lot from being saved:</h2>
+
+      <ul>
+        <% lot.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, class: 'form-control', id: 'floatingInput', placeholder: 'Name' %>
+    <label for="floatingInput">Name</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :category, class: 'form-control', id: 'floatingInput', placeholder: 'Category' %>
+    <label for="floatingInput">Category</label>
+  </div>
+
+  <div class="form-floating">
+    <% form.label :description, style: 'display: block' %>
+    <%= form.text_area :description, class: 'form-control', placeholder: 'Description', id: 'floatingTextarea', style: 'height: 100px' %>
+    <label for="floatingTextarea">Description</label>
+  </div>
+
+  <div class="input-group mb-3" style="margin-top: 15px">
+    <span class="input-group-text">$</span>
+    <span class="input-group-text">0.00</span>
+    <%= form.number_field :initial_price, class: 'form-control', placeholder: 'Initial Price', min: 1, id: 'input1' %>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">$</span>
+    <span class="input-group-text">0.00</span>
+    <%= form.number_field :auto_purchase_price, class: 'form-control', placeholder: 'Auto Purchase Price', min: 1, id: 'input2' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :end_time, style: 'display: block' %>
+    <%= form.datetime_field :end_time, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.number_field :user_id, id: :friend_user_id, class: 'form-control', value: current_user.id, type: :hidden %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :tags, value: @lot.tags.join(', '), class: 'form-control', id: 'floatingInput', placeholder: 'Tags' %>
+    <label for="floatingInput">Tags</label>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :images, style: 'display: block' %>
+    <%= form.file_field :images, class: 'form-control', multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit class: 'btn btn-outline-success'%>
+  </div>
+<% end %>
+
+<script>
+    $(document).ready(function() {
+        $('#input1').on('input', function() {
+            var minValue = parseFloat($(this).val()) || 0;
+            $('#input2').val(minValue).attr('min', minValue);
+        });
+    });
+</script>

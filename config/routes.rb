@@ -1,6 +1,18 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount Sidekiq::Web => '/sidekiq'
+
+  resources :lots do
+    get "/tag/:tag", on: :collection, to: "lots#tag", as: :tag
+    resources :bids, only: [:create]
+  end
+  get 'won_lots', to: 'lots#won_lots'
+  get 'my_lots', to: 'lots#my_lots'
+  get '/best_lots', to: 'lots#best_lots', as: 'best_lots'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations' }
+  root 'lots#best_lots'
+  get 'switch_language/:locale', to: 'language#switch', as: 'switch_language'
 end

@@ -5,7 +5,7 @@ class LotsController < ApplicationController
   # GET /lots or /lots.json
   def index
     @q = Lot.ransack(params[:q])
-    @lots = @q.result(distinct: true).without_winner.where.not(user_id: current_user.id)
+    @lots = @q.result(distinct: true).without_winner
   end
 
   def my_lots

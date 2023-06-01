@@ -1,5 +1,5 @@
 <div class="jumbotron" >
-  <h1 class="display-4">Dear, <%= @user.name + ' ' + @user.surname %></h1>
+  <h1 class="display-4">Dear, <%= "#{@user.name} #{@user.surname}" %></h1>
   <p class="lead">Your bid for lot number <%= @lot.id %>, <%= @lot.name %> was beaten with <%= @leading_bid.to_i %>$ bid.</p>
   <p class="lead">You have <%= ((@lot.end_time - Time.current) / 1.hour).to_i %> hours to place a new bid.</p>
   <hr class="my-4">

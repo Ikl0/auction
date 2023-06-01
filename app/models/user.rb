@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_one_attached :avatar, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable,
          :validatable, :omniauthable, omniauth_providers: [:github]
@@ -34,5 +36,4 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :user
   end
-
 end

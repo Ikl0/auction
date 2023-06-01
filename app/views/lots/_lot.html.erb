@@ -1,59 +1,91 @@
-<div class="card mb-3" style="max-width: 700px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <%if lot.images.attached? %>
-        <% lot.images.each do |image| %>
-           <%= image_tag image, class: 'card-img-top'%>
-        <% end %>
+<div class="container marketing">
+
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1"><%= lot.name %></h2>
+      <p class="lead"><%= lot.description %></p>
+    </div>
+    <div class="col-md-5">
+      <%if lot.images.first %>
+          <%= image_tag lot.images.first, class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto'%>
       <% else %>
-        <%= image_tag 'placeholder.jpeg', class: 'card-img-top' %>
+        <%= image_tag 'placeholder.jpeg', class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto' %>
       <%end %>
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><%= lot.name %></h5>
-        <p class="card-text"><%= lot.description %></p>
-        <p class="card-text">Category: <%= lot.category %></p>
-        <p class="card-text"><small class="text-body-secondary">Initial price: <%= "#{lot.initial_price.to_i}$" %></small></p>
-        <p class="card-text"><small class="text-body-secondary">Auto purchase price: <%= "#{lot.auto_purchase_price.to_i}$" %></small></p>
-        <p class="card-text"><small class="text-body-secondary">Due to: <%= lot.end_time %></small></p>
-        <p class="card-text"><small class="text-body-secondary">Tagged:
-          <% lot.tags.map do |tag| %>
-          <%= link_to "##{tag}", tag_lots_path(tag:), class: 'underline text-blue-600 mr-1.5' %>
-          <% end %>
-        </small></p>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading fw-normal lh-1">Initial price: <%= "#{lot.initial_price.to_i}$" %>. <span class="text-body-secondary">Auto purchase price: <%= "#{lot.auto_purchase_price.to_i}$" %></span></h2>
+      <p class="lead">Due to: <%= lot.end_time %></p>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <%if lot.images.second %>
+        <%= image_tag lot.images.second, class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto'%>
+      <% else %>
+        <%= image_tag 'placeholder.jpeg', class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto' %>
+      <%end %>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1">Let`s start the business. <span class="text-body-secondary">Good luck!</span></h2>
+      <p class="lead">
         <% if @lot.winner && @lot.winner == current_user %>
           <span class="badge bg-success">You have won this lot with <%=@leading_bid.amount %>$ bid</span>
           <p class="card-text"><small class="text-body-secondary">Lot owner: <%= "#{lot.user.name} #{lot.user.surname}"%> </small></p>
-      <%elsif @lot.winner && @lot.winner != current_user && @lot.user_id != current_user.id%>
+        <%elsif @lot.winner && @lot.winner != current_user && @lot.user_id != current_user.id%>
           <span class="badge bg-danger">This lot has been sold, the winner is: <%="#{@lot.winner.name} #{@lot.winner.surname}" %></span>
         <% else %>
           <% if @lot.user_id == current_user.id %>
             <% if @lot.winner %>
-            <span class="badge bg-success">The winner is <%= "#{@leading_bid.user.surname} #{@leading_bid.user.name}" %> with <%= @leading_bid.amount %>$ bid</span>
+              <span class="badge bg-success">The winner is <%= "#{@leading_bid.user.surname} #{@leading_bid.user.name}" %> with <%= @leading_bid.amount %>$ bid</span>
             <% elsif @leading_bid %>
-            <span class="badge bg-primary">The leading bid is <%= @leading_bid.amount %>$ by <%= "#{@leading_bid.user.name} #{@leading_bid.user.surname}" %></span>
+              <span class="badge bg-primary">The leading bid is <%= @leading_bid.amount %>$ by <%= "#{@leading_bid.user.name} #{@leading_bid.user.surname}" %></span>
             <% else %>
-            <span class="badge bg-info text-dark">Your lot has no bids yet</span>
+              <span class="badge bg-info text-dark">Your lot has no bids yet</span>
             <% end %>
           <% elsif @leading_bid && @leading_bid.user == current_user %>
             <span class="badge bg-success">Your bid <%= @leading_bid.amount %>$ is leading now</span>
           <% else %>
             <% if @leading_bid.nil? %>
-            <span class="badge bg-warning text-dark">There are no bids for this lot yet! Be the first:</span>
+              <span class="badge bg-warning text-dark">There are no bids for this lot yet! Be the first:</span>
             <% else %>
-            <span class="badge bg-warning text-dark">The leading bid is <%= @leading_bid.amount %>$ by <%= "#{@leading_bid.user.name} #{@leading_bid.user.surname}" %></span>
+              <span class="badge bg-warning text-dark">The leading bid is <%= @leading_bid.amount %>$ by <%= "#{@leading_bid.user.name} #{@leading_bid.user.surname}" %></span>
             <% end %>
             <p class="card-text">
               <%= form_with(model: @bid, url: lot_bids_path(@lot), method: :post) do |form| %>
-                <%= form.label :bid %>
-                <%= form.number_field :amount, min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price), max: lot.auto_purchase_price %>
-                <%= form.submit 'Place Bid' %>
+              <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <span class="input-group-text">0.00</span>
+                <%= form.number_field :amount, min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price), max: lot.auto_purchase_price, class: 'form-control' %>
+                <%= form.submit 'Place Bid', class:'btn btn-outline-secondary' %>
+              </div>
               <% end %>
             </p>
           <% end %>
         <% end %>
-      </div>
+      </p>
+    </div>
+    <div class="col-md-5">
+      <%if lot.images.third %>
+        <%= image_tag lot.images.third, class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto'%>
+      <% else %>
+        <%= image_tag 'placeholder.jpeg', class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto' %>
+      <%end %>
     </div>
   </div>
+
+  <hr class="featurette-divider">
+
+  <!-- /END THE FEATURETTES -->
+
 </div>

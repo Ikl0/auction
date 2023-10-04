@@ -25,11 +25,11 @@
       <p class="lead">Due to: <%= lot.end_time %></p>
     </div>
     <div class="col-md-5 order-md-1">
-      <%if lot.images.second %>
+      <% if lot.images.second %>
         <%= image_tag lot.images.second, class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto'%>
       <% else %>
         <%= image_tag 'placeholder.jpeg', class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto' %>
-      <%end %>
+      <% end %>
     </div>
   </div>
 
@@ -67,7 +67,7 @@
                 <span class="input-group-text">$</span>
                 <span class="input-group-text">0.00</span>
                 <%= form.number_field :amount, min: (@leading_bid ? @leading_bid.amount + 1 : lot.initial_price), max: lot.auto_purchase_price, class: 'form-control' %>
-                <%= form.submit 'Place Bid', class:'btn btn-outline-secondary' %>
+                <%= form.submit 'Place Bid', class: 'btn btn-outline-secondary' %>
               </div>
               <% end %>
             </p>
@@ -83,9 +83,5 @@
       <%end %>
     </div>
   </div>
-
   <hr class="featurette-divider">
-
-  <!-- /END THE FEATURETTES -->
-
 </div>

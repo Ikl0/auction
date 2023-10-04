@@ -24,10 +24,10 @@
           <% if current_user.admin? %>
             <li class="nav-item"> <%= link_to t('admin_panel'), rails_admin_path, class: 'btn btn-small btn-primary mx-2' %></li>
           <% end %>
-          <li class="nav-item"> <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-small btn-primary mx-2' %></li>
+          <li class="nav-item"> <%= button_to t('sign_out'), destroy_user_session_path, method: :delete, class: 'btn btn-small btn-primary mx-2' %></li>
         <% else %>
-          <li class="nav-item"> <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'  %></li>
-          <li class="nav-item"> <%= link_to 'Sign In', new_user_session_path, class: 'nav-link'  %></li>
+          <li class="nav-item"> <%= link_to t('sign_in'), new_user_session_path, class: 'nav-link'  %></li>
+          <li class="nav-item"> <%= link_to t('sign_up'), new_user_registration_path, class: 'nav-link'  %></li>
         <% end %>
         <% if session[:locale] == 'ru' %>
           <li class="nav-item"> <%= link_to t('switch_to_english'), switch_language_path(locale: 'en.yml'), class: 'btn btn-small btn-secondary mx-2'%></li>

@@ -73,6 +73,8 @@ group :development do
   gem "rubocop-erb", "~> 0.2.4"
   gem 'sidekiq'
   gem 'sidekiq-cron', '~> 1.10', '>= 1.10.1'
+  gem 'rspec-rails', '~> 6.0.0'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -82,6 +84,8 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'simplecov'
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
